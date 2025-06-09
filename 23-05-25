@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample dataset (you can replace with your own)
+# Let's try to fit y = 2x + 3 (roughly)
+X = np.array([1, 2, 3, 4, 5])
+y = np.array([5, 7, 9, 11, 13])
+
+# Add a column of ones to X for the intercept term (bias)
+X_b = np.c_[np.ones((X.shape[0], 1)), X]  # shape: (n_samples, 2)
+
+# Compute theta using the Normal Equation
+# θ = (XᵀX)^-1 Xᵀy
+theta_best = np.linalg.inv(X_b.T.dot(X_b)).dot(X_b.T).dot(y)
+
+print("Intercept (theta_0):", theta_best[0])
+print("Slope (theta_1):", theta_best[1])
+
+# Predict values
+y_pred = X_b.dot(theta_best)
+
+# Plotting for visualization
+plt.scatter(X, y, color='blue', label='Original data')
+plt.plot(X, y_pred, color='red', label='Fitted line')
+plt.xlabel('X')
+plt.ylabel('y')
+plt.title('Linear Regression using NumPy')
+plt.legend()
+plt.grid(True)
+plt.show()
