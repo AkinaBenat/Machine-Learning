@@ -9,7 +9,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load data
-df = pd.read_csv('data/loan-train.csv')
+df = pd.read_csv('loan-train.csv')
 
 # Drop Loan_ID
 df.drop('Loan_ID', axis=1, inplace=True)
